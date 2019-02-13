@@ -3,7 +3,30 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  title: 'my app',
+  securityUrl: 'http',
+  baseUrl: '://127.0.0.1',
+  routes: [
+    {
+      path: '',
+      redirectTo: 'example',
+      pathMatch: 'full'
+    }, // the default page
+    {
+      path: 'example',
+      loadChildren: './routed-sub-module-example/routed-sub-module-example-routing.module#RoutedSubModuleExampleRoutingModule'
+    },
+    {
+      path: 'login',
+      loadChildren: './login/login-routing.module#LoginRoutingModule'
+    },
+    {
+      path: '**',
+      redirectTo: 'example'
+    }
+  ],
+  canRegister: true // if !hasLogin canRegister will be considered false
 };
 
 /*
