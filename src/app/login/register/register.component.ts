@@ -12,12 +12,12 @@ import {Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   applicationName = environment.title;
-  @ViewChild('username') username: MatInput;
-  @ViewChild('password') password: MatInput;
-  @ViewChild('validPassword') validPassword: MatInput;
-  @ViewChild('firstName') firstName: MatInput;
-  @ViewChild('lastName') lastName: MatInput;
-  @ViewChild('email') email: MatInput;
+  @ViewChild('username', {read: MatInput}) username: MatInput;
+  @ViewChild('password', {read: MatInput}) password: MatInput;
+  @ViewChild('validPassword', {read: MatInput}) validPassword: MatInput;
+  @ViewChild('firstName', {read: MatInput}) firstName: MatInput;
+  @ViewChild('lastName', {read: MatInput}) lastName: MatInput;
+  @ViewChild('email', {read: MatInput}) email: MatInput;
   hasError = false;
 
   constructor(
@@ -33,10 +33,13 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.authService.login(
+    this.authService.register(
       {
-        username: this.username.nativeElement.value,
-        password: this.password.nativeElement.value
+        username: this.username.value,
+        password: this.password.value,
+        firstName: this.firstName.value,
+        lastName: this.lastName.value,
+        email: this.lastName.value
       }).subscribe(
       () => {
         this.goToLogin();
