@@ -12,8 +12,8 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   applicationName = environment.title;
-  @ViewChild('username') username: MatInput;
-  @ViewChild('password') password: MatInput;
+  @ViewChild('username', {read: MatInput}) username: MatInput;
+  @ViewChild('password', {read: MatInput}) password: MatInput;
   hasError = false;
   canRegister = environment.canRegister;
 
@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(
       {
-        username: this.username.nativeElement.value,
-        password: this.password.nativeElement.value
+        username: this.username.value,
+        password: this.password.value
       }).subscribe(
       () => {
         this.router.navigate(['']);
