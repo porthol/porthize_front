@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {environment} from '../environments/environment';
+import { RouterModule, Routes } from '@angular/router';
+import { environment } from '../environments/environment';
 
 const routes: Routes = environment.routes; // Will get from the environment file the wanted routing
 
@@ -8,4 +8,5 @@ const routes: Routes = environment.routes; // Will get from the environment file
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -1,16 +1,17 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Observable, throwError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
-import {AuthService} from './auth.service';
-import {environment} from '../environments/environment';
-import {CookieManagerService} from './cookie-manager.service';
-import {TokenObject} from '../models/token';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+import { environment } from '../environments/environment';
+import { CookieManagerService } from './cookie-manager.service';
+import { TokenObject } from '../models/token';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
 
-  constructor(private authService: AuthService, private cookieManager: CookieManagerService) { }
+  constructor(private authService: AuthService, private cookieManager: CookieManagerService) {
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // intercept request to apply the right api route
@@ -25,10 +26,10 @@ export class HttpInterceptorService implements HttpInterceptor {
     }
 
     request = request.clone(
-{
-          headers: request.headers.set('Accept', 'application/json'),
-          url: environment.securityUrl + environment.baseUrl + request.url
-        });
+      {
+        headers: request.headers.set('Accept', 'application/json'),
+        url: environment.securityUrl + environment.baseUrl + request.url
+      });
 
     return next.handle(request).pipe(catchError(err => {
       if (err.status === 401) {

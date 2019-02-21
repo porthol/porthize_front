@@ -5,9 +5,10 @@ import { RoutedComponentOneComponent } from './routed-component-one/routed-compo
 import { RoutedComponentTwoComponent } from './routed-component-two/routed-component-two.component';
 
 @NgModule({
-  declarations: [RoutedComponentOneComponent, RoutedComponentTwoComponent],
-  imports: [
-    CommonModule
-  ]
+    declarations: [RoutedComponentOneComponent, RoutedComponentTwoComponent],
+    imports: [
+        CommonModule
+    ]
 })
-export class RoutedSubModuleExampleModule { }
+export class RoutedSubModuleExampleModule {
+}

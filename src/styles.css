@@ -3,5 +3,5 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 .pointer {
-  cursor: pointer !important;
+    cursor: pointer !important;
 }
