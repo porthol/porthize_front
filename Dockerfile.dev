@@ -1,0 +1,11 @@
+FROM node:8 as builder
+
+WORKDIR "/opt/app"
+
+COPY . ./
+
+EXPOSE 4200
+
+RUN npm install
+
+RUN npm run start
