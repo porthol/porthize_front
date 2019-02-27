@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/themes.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -57,7 +58,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "default-angular-app:build"
+            "browserTarget": "default-angular-app:build",
+            "host": "0.0.0.0",
+            "publicHost": "http://main.app.mydomain:8082/",
+            "disableHostCheck": true
           },
           "configurations": {
             "production": {
@@ -131,5 +135,5 @@
       }
     }
   },
-  "defaultProject": "default-angular-app"
+  "defaultProject": "front"
 }

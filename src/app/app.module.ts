@@ -9,6 +9,8 @@ import { CookieModule } from 'ngx-cookie';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbLayoutModule, NbSidebarModule, NbSidebarService, NbThemeModule } from '@nebular/theme';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -20,12 +22,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         CookieModule.forRoot(),
         HttpClientModule,
         BrowserAnimationsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        NbThemeModule.forRoot({ name: 'default' }),
+        RouterModule,
+        NbSidebarModule,
+        NbLayoutModule
     ],
     providers: [
         CookieManagerService,
         AuthService,
-        { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true },
+        NbSidebarService
     ],
     bootstrap: [AppComponent]
 })

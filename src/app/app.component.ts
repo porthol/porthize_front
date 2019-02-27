@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { animate, group, query, style, transition, trigger } from '@angular/animations';
+import { NbSidebarService } from '@nebular/theme';
+import { NbSidebarComponent } from '@nebular/theme/components/sidebar/sidebar.component';
 
 const slideLeft = [
     query(':leave', style({
@@ -60,10 +62,19 @@ const slideRight = [
     ]
 })
 export class AppComponent {
-    title = 'default-angular-app';
+    @ViewChild('sideBar') sideBar: NbSidebarComponent;
+    title = 'front';
+
+
+    constructor() {
+    }
 
     prepareRouteTransition(outlet) {
         const animation = outlet.activatedRouteData['animation'] || {};
         return animation['value'] || null;
+    }
+
+    toggle() {
+        this.sideBar.toggle(true);
     }
 }

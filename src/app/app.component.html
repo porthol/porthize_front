@@ -1,3 +1,12 @@
-<div [@routerAnimations]="prepareRouteTransition(outlet)" class="page">
-    <router-outlet #outlet="outlet"></router-outlet>
-</div>
+<nb-layout>
+    <nb-sidebar #sideBar right>
+        <i class="fas fa-bars pointer" (click)="toggle()"></i>
+    </nb-sidebar>
+
+    <nb-layout-column>
+        <div [@routerAnimations]="prepareRouteTransition(outlet)" class="page">
+            <router-outlet #outlet="outlet"></router-outlet>
+        </div>
+    </nb-layout-column>
+
+</nb-layout>

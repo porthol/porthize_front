@@ -4,27 +4,19 @@
 
 export const environment = {
     production: false,
+    defaultWorkspace: 'main',
     title: 'my app',
-    securityUrl: 'http',
-    baseUrl: '://127.0.0.1/api/',
-    routes: [
+    securityUrl: window.location.protocol,
+    baseUrl: '://' + window.location.host + '/',
+    routes: [ // the default page
         {
             path: '',
-            redirectTo: 'example',
-            pathMatch: 'full'
-        }, // the default page
-        {
-            path: 'example',
-            loadChildren: './routed-sub-module-example/routed-sub-module-example-routing.module#RoutedSubModuleExampleRoutingModule'
-        },
-        {
-            path: 'login',
-            loadChildren: './login/login-routing.module#LoginRoutingModule'
+            loadChildren: './auth/auth.module#AuthModule'
         },
         {
             path: '**',
-            redirectTo: 'example'
-        }
+            redirectTo: ''
+        },
     ],
     canRegister: true // if !hasLogin canRegister will be considered false
 };
