@@ -1,0 +1,5 @@
+
+<nb-sidebar-header>
+    <nb-user *ngIf="user" [name]="user.username || user.email"></nb-user>
+    <i class="fas fa-bars pointer" (click)="toggle()"></i>
+</nb-sidebar-header>

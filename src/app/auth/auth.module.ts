@@ -4,10 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { AuthRoutingModule } from './auth-routing.module';
-import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
+import { NbAuthModule } from '@nebular/auth';
 import { NbAlertModule, NbButtonModule, NbCheckboxModule, NbInputModule } from '@nebular/theme';
 import { RegisterComponent } from './register/register.component';
-
 
 @NgModule({
     imports: [
@@ -19,28 +18,8 @@ import { RegisterComponent } from './register/register.component';
         NbButtonModule,
         NbCheckboxModule,
         AuthRoutingModule,
-
-        NbAuthModule.forRoot({
-            strategies: [
-                NbPasswordAuthStrategy.setup({
-                    name: 'email',
-                    token: {
-                        class: NbAuthJWTToken,
-                        key: 'token'
-                    },
-                    baseEndpoint: '',
-                    login: {
-                        endpoint: '/api/users/login'
-                    },
-                    register: {
-                        endpoint: '/api/users'
-                    }
-                })
-            ],
-            forms: {}
-        })
+        NbAuthModule
     ],
     declarations: [RegisterComponent]
 })
-export class AuthModule {
-}
+export class AuthModule {}

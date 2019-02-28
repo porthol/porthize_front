@@ -8,9 +8,7 @@ import { TokenObject } from '../models/token';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
-
-    constructor(private authService: AuthService, private cookieManager: CookieManagerService) {
-    }
+    constructor(private authService: AuthService, private cookieManager: CookieManagerService) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // intercept request to apply the right api route
@@ -24,20 +22,21 @@ export class HttpInterceptorService implements HttpInterceptor {
             request = request.clone({ headers: request.headers.set('Content-Type', 'application/json') });
         }
 
-        request = request.clone(
-            {
-                headers: request.headers.set('Accept', 'application/json')
-                // url: environment.securityUrl + environment.baseUrl + request.url
-            });
+        request = request.clone({
+            headers: request.headers.set('Accept', 'application/json')
+            // url: environment.securityUrl + environment.baseUrl + request.url
+        });
 
-        return next.handle(request).pipe(catchError(err => {
-            if (err.status === 401) {
-                // auto logout if 401 response returned from api
-                this.authService.logout();
-            }
+        return next.handle(request).pipe(
+            catchError(err => {
+                if (err.status === 401) {
+                    // auto logout if 401 response returned from api
+                    this.authService.logout();
+                }
 
-            const error = err.error.message || err.statusText;
-            return throwError(error);
-        }));
+                const error = err.error.message || err.statusText;
+                return throwError(error);
+            })
+        );
     }
 }

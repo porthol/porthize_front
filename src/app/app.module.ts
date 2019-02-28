@@ -7,15 +7,15 @@ import { HttpInterceptorService } from '../services/http-interceptor.service';
 import { CookieManagerService } from '../services/cookie-manager.service';
 import { CookieModule } from 'ngx-cookie';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbLayoutModule, NbSidebarModule, NbSidebarService, NbThemeModule } from '@nebular/theme';
+import { NbLayoutModule, NbSidebarModule, NbSidebarService, NbThemeModule, NbUserModule } from '@nebular/theme';
 import { RouterModule } from '@angular/router';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
+import { NbUser } from '@nebular/auth/models/user';
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
+    declarations: [AppComponent, SidebarComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -26,15 +26,33 @@ import { RouterModule } from '@angular/router';
         NbThemeModule.forRoot({ name: 'default' }),
         RouterModule,
         NbSidebarModule,
-        NbLayoutModule
+        NbLayoutModule,
+        NbAuthModule.forRoot({
+            strategies: [
+                NbPasswordAuthStrategy.setup({
+                    name: 'email',
+                    token: {
+                        class: NbAuthJWTToken,
+                        key: 'token'
+                    },
+                    baseEndpoint: '',
+                    login: {
+                        endpoint: '/api/users/login'
+                    },
+                    register: {
+                        endpoint: '/api/users'
+                    }
+                })
+            ],
+            forms: {}
+        }),
+        NbUserModule
     ],
     providers: [
         CookieManagerService,
-        AuthService,
         { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true },
         NbSidebarService
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

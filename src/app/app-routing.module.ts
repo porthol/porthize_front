@@ -5,8 +5,7 @@ import { environment } from '../environments/environment';
 const routes: Routes = environment.routes; // Will get from the environment file the wanted routing
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

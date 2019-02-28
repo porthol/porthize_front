@@ -3,9 +3,7 @@ import { CookieService } from 'ngx-cookie';
 
 @Injectable()
 export class CookieManagerService {
-
-    constructor(private cookieService: CookieService) {
-    }
+    constructor(private cookieService: CookieService) {}
 
     getCookieStringByKey(cookieKey: string): string {
         return this.cookieService.get(cookieKey);
@@ -26,5 +24,4 @@ export class CookieManagerService {
     removeCookie(cookieKey: string) {
         this.cookieService.remove(cookieKey);
     }
-
 }
