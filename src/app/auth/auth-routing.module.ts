@@ -35,7 +35,7 @@ export const routes: Routes = [
                 component: NbResetPasswordComponent
             },
             {
-                path: '**',
+                path: '',
                 redirectTo: 'login'
             }
         ]

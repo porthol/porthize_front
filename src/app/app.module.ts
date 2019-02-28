@@ -8,14 +8,10 @@ import { CookieManagerService } from '../services/cookie-manager.service';
 import { CookieModule } from 'ngx-cookie';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbLayoutModule, NbSidebarModule, NbSidebarService, NbThemeModule, NbUserModule } from '@nebular/theme';
-import { RouterModule } from '@angular/router';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { NbSidebarService, NbThemeModule } from '@nebular/theme';
 import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
-import { NbUser } from '@nebular/auth/models/user';
-
 @NgModule({
-    declarations: [AppComponent, SidebarComponent],
+    declarations: [AppComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -24,9 +20,6 @@ import { NbUser } from '@nebular/auth/models/user';
         BrowserAnimationsModule,
         AppRoutingModule,
         NbThemeModule.forRoot({ name: 'default' }),
-        RouterModule,
-        NbSidebarModule,
-        NbLayoutModule,
         NbAuthModule.forRoot({
             strategies: [
                 NbPasswordAuthStrategy.setup({
@@ -45,8 +38,7 @@ import { NbUser } from '@nebular/auth/models/user';
                 })
             ],
             forms: {}
-        }),
-        NbUserModule
+        })
     ],
     providers: [
         CookieManagerService,

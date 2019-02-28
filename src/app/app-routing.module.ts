@@ -1,11 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { environment } from '../environments/environment';
 
-const routes: Routes = environment.routes; // Will get from the environment file the wanted routing
+const routes: Routes = [
+    {
+        path: 'content',
+        loadChildren: './content/content.module#ContentModule'
+    },
+    {
+        path: '',
+        loadChildren: './auth/auth.module#AuthModule'
+    },
+    {
+        path: '**',
+        redirectTo: ''
+    }
+];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
