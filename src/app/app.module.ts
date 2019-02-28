@@ -30,7 +30,12 @@ import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/a
                     },
                     baseEndpoint: '',
                     login: {
-                        endpoint: '/api/users/login'
+                        endpoint: '/api/users/login',
+                        requireValidToken: false,
+                        redirect: {
+                            success: '/content',
+                            failure: null,
+                        },
                     },
                     register: {
                         endpoint: '/api/users'
