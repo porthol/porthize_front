@@ -9,11 +9,7 @@ import { ContentRoutingModule } from './content-routing.module';
 import { ExampleComponent } from './example/example.component';
 
 @NgModule({
-    declarations: [
-        ContentComponent,
-        SidebarComponent,
-        ExampleComponent
-    ],
+    declarations: [ContentComponent, SidebarComponent, ExampleComponent],
     imports: [
         CommonModule,
         NbUserModule,
@@ -24,5 +20,4 @@ import { ExampleComponent } from './example/example.component';
         ContentRoutingModule
     ]
 })
-export class ContentModule {
-}
+export class ContentModule {}

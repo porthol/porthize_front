@@ -16,7 +16,8 @@ export const routes: Routes = [
                 path: '',
                 pathMatch: 'full',
                 redirectTo: 'example'
-            }]
+            }
+        ]
     }
 ];
 
@@ -24,5 +25,4 @@ export const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class ContentRoutingModule {
-}
+export class ContentRoutingModule {}
