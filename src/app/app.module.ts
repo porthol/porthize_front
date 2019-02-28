@@ -34,11 +34,15 @@ import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/a
                         requireValidToken: false,
                         redirect: {
                             success: '/content',
-                            failure: null,
-                        },
+                            failure: null
+                        }
                     },
                     register: {
                         endpoint: '/api/users'
+                    },
+                    requestPass: {
+                        endpoint: '/api/users/password/reset',
+                        method: 'post'
                     }
                 })
             ],
