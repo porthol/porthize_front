@@ -43,6 +43,19 @@ import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/a
                     requestPass: {
                         endpoint: '/api/users/password/reset',
                         method: 'post'
+                    },
+                    logout: {
+                        redirect: {
+                            success: '/'
+                        }
+                    },
+                    resetPass: {
+                        endpoint: '/api/users/password/reset',
+                        method: 'put',
+                        redirect: {
+                            success: '/'
+                        },
+                        resetPasswordTokenKey: 'reset-token'
                     }
                 })
             ],
