@@ -1,6 +1,9 @@
 <nb-layout>
-  <nb-sidebar #sideBar right>
-    <app-sidebar [sideBar]="sideBar"></app-sidebar>
+  <nb-layout-header>
+    <app-navbar [sideBar]="sideBar"></app-navbar>
+  </nb-layout-header>
+  <nb-sidebar #sideBar>
+    <app-sidebar></app-sidebar>
   </nb-sidebar>
 
   <nb-layout-column>

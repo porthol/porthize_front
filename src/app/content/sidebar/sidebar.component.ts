@@ -8,8 +8,6 @@ import { NbSidebarComponent } from '@nebular/theme/components/sidebar/sidebar.co
     styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-    @Input() sideBar: NbSidebarComponent;
-
     constructor(private authService: NbAuthService) {
         this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
             if (token.isValid()) {
@@ -21,8 +19,4 @@ export class SidebarComponent implements OnInit {
     user = {};
 
     ngOnInit() {}
-
-    toggle() {
-        this.sideBar.toggle(true);
-    }
 }

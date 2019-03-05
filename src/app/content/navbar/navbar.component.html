@@ -1,0 +1,7 @@
+<nb-actions
+        size="medium">
+    <nb-action icon="nb-menu" (click)="toggle()"></nb-action>
+    <nb-action>
+        <nb-user *ngIf="user" [name]="user.username || user.email"></nb-user>
+    </nb-action>
+</nb-actions>
