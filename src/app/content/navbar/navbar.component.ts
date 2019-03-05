@@ -3,26 +3,26 @@ import { NbSidebarComponent } from '@nebular/theme/components/sidebar/sidebar.co
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  @Input() sideBar: NbSidebarComponent;
+    @Input() sideBar: NbSidebarComponent;
 
-  constructor(private authService: NbAuthService) {
-    this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
-      if (token.isValid()) {
-        this.user = token.getPayload().user;
-      }
-    });
-  }
+    constructor(private authService: NbAuthService) {
+        this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
+            if (token.isValid()) {
+                this.user = token.getPayload().user;
+            }
+        });
+    }
 
-  user = {};
+    user = {};
 
-  ngOnInit() {}
+    ngOnInit() {}
 
-  toggle() {
-    this.sideBar.toggle(true);
-  }
+    toggle() {
+        this.sideBar.toggle(true);
+    }
 }
