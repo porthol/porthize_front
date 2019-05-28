@@ -8,7 +8,7 @@ import { CookieManagerService } from '../services/cookie-manager.service';
 import { CookieModule } from 'ngx-cookie';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbSidebarService, NbThemeModule } from '@nebular/theme';
+import { NbMenuModule, NbSidebarService, NbThemeModule } from '@nebular/theme';
 import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
 @NgModule({
     declarations: [AppComponent],
@@ -60,7 +60,8 @@ import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/a
                 })
             ],
             forms: {}
-        })
+        }),
+        NbMenuModule.forRoot()
     ],
     providers: [
         CookieManagerService,
