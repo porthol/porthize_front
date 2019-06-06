@@ -1,4 +1,4 @@
 <nb-sidebar-header>
-    Menu
+    <span *ngIf="!sidebar.compacted">Menu</span>
 </nb-sidebar-header>
 <nb-menu [items]="menuItems"></nb-menu>

@@ -1,7 +1,6 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
-import { NbSidebarComponent } from '@nebular/theme/components/sidebar/sidebar.component';
-import { NbMenuItem } from '@nebular/theme';
+import { NbMenuItem, NbSidebarComponent } from '@nebular/theme';
 
 @Component({
     selector: 'app-sidebar',
@@ -9,6 +8,8 @@ import { NbMenuItem } from '@nebular/theme';
     styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
+    @Input() sidebar: NbSidebarComponent;
+
     constructor(private authService: NbAuthService) {
         this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
             if (token.isValid()) {
@@ -22,15 +23,10 @@ export class SidebarComponent implements OnInit {
     menuItems: NbMenuItem[] = [
         {
             title: 'Dashboard',
-            icon: 'nb-home',
+            icon: 'home-outline',
             link: '/content/dashboard',
-            home: true,
-        },
-        {
-            title: 'Profile',
-            icon: 'nb-person',
-            link: '/content/profile',
-        },
+            home: true
+        }
     ];
 
     ngOnInit() {}

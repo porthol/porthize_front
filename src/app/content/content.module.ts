@@ -4,6 +4,8 @@ import { ContentComponent } from './content.component';
 import {
     NbActionsModule,
     NbCardModule,
+    NbContextMenuModule,
+    NbIconModule,
     NbLayoutModule,
     NbMenuModule,
     NbSidebarModule,
@@ -29,7 +31,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         NbActionsModule,
         NbCardModule,
         NbMenuModule,
-        ContentRoutingModule
+        NbIconModule,
+        ContentRoutingModule,
+        NbContextMenuModule
     ]
 })
 export class ContentModule {}

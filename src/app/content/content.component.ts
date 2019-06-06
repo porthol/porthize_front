@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NbSidebarComponent } from '@nebular/theme/components/sidebar/sidebar.component';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-content',
@@ -7,8 +6,6 @@ import { NbSidebarComponent } from '@nebular/theme/components/sidebar/sidebar.co
     styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
-    @ViewChild('sideBar') sideBar: NbSidebarComponent;
-
     constructor() {}
 
     ngOnInit() {}

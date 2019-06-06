@@ -4,22 +4,22 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpInterceptorService } from '../services/http-interceptor.service';
-import { CookieManagerService } from '../services/cookie-manager.service';
-import { CookieModule } from 'ngx-cookie';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbMenuModule, NbSidebarService, NbThemeModule } from '@nebular/theme';
 import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
+import { NbRoleProvider, NbSecurityModule } from '@nebular/security';
+import { RoleProvider } from '../providers/role.provider';
+import { AuthGuard } from '../services/auth-guard.service';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 @NgModule({
     declarations: [AppComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        CookieModule.forRoot(),
         HttpClientModule,
-        BrowserAnimationsModule,
         AppRoutingModule,
-        NbThemeModule.forRoot({ name: 'default' }),
+        NbThemeModule.forRoot({ name: 'dark' }),
         NbAuthModule.forRoot({
             strategies: [
                 NbPasswordAuthStrategy.setup({
@@ -28,9 +28,9 @@ import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/a
                         class: NbAuthJWTToken,
                         key: 'token'
                     },
-                    baseEndpoint: '',
+                    baseEndpoint: '/api/users',
                     login: {
-                        endpoint: '/api/users/login',
+                        endpoint: '/login',
                         requireValidToken: false,
                         redirect: {
                             success: '/content',
@@ -38,19 +38,20 @@ import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/a
                         }
                     },
                     register: {
-                        endpoint: '/api/users'
+                        endpoint: ''
                     },
                     requestPass: {
-                        endpoint: '/api/users/password/reset',
+                        endpoint: '/password/reset',
                         method: 'post'
                     },
                     logout: {
+                        endpoint: '',
                         redirect: {
                             success: '/'
                         }
                     },
                     resetPass: {
-                        endpoint: '/api/users/password/reset',
+                        endpoint: '/password/reset',
                         method: 'put',
                         redirect: {
                             success: '/'
@@ -59,14 +60,37 @@ import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/a
                     }
                 })
             ],
-            forms: {}
+            forms: {
+                logout: {
+                    redirectDelay: 0
+                }
+            }
         }),
-        NbMenuModule.forRoot()
+        NbMenuModule.forRoot(),
+        NbEvaIconsModule,
+        NbSecurityModule.forRoot({
+            accessControl: {
+                guest: {
+                    view: ['login']
+                },
+                user: {
+                    parent: 'guest',
+                    view: 'profile'
+                },
+                root: {
+                    parent: 'user',
+                    view: '*',
+                    create: '*',
+                    remove: '*'
+                }
+            }
+        })
     ],
     providers: [
-        CookieManagerService,
         { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true },
-        NbSidebarService
+        { provide: NbRoleProvider, useClass: RoleProvider },
+        NbSidebarService,
+        AuthGuard
     ],
     bootstrap: [AppComponent]
 })
