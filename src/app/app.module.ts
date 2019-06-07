@@ -6,12 +6,22 @@ import { AppComponent } from './app.component';
 import { HttpInterceptorService } from '../services/http-interceptor.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbMenuModule, NbSidebarService, NbThemeModule } from '@nebular/theme';
+import {
+    NbDatepickerModule,
+    NbGlobalLogicalPosition,
+    NbMenuModule,
+    NbSidebarService,
+    NbThemeModule,
+    NbToastrModule
+} from '@nebular/theme';
 import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
 import { NbRoleProvider, NbSecurityModule } from '@nebular/security';
 import { RoleProvider } from '../providers/role.provider';
 import { AuthGuard } from '../services/auth-guard.service';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { UserService } from '../services/user.service';
+import { AlertService } from '../services/alert.service';
+
 @NgModule({
     declarations: [AppComponent],
     imports: [
@@ -19,6 +29,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
         BrowserAnimationsModule,
         HttpClientModule,
         AppRoutingModule,
+        NbDatepickerModule.forRoot(),
         NbThemeModule.forRoot({ name: 'dark' }),
         NbAuthModule.forRoot({
             strategies: [
@@ -84,13 +95,20 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
                     remove: '*'
                 }
             }
+        }),
+        NbToastrModule.forRoot({
+            destroyByClick: true,
+            position: NbGlobalLogicalPosition.BOTTOM_END,
+            hasIcon: true
         })
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true },
         { provide: NbRoleProvider, useClass: RoleProvider },
         NbSidebarService,
-        AuthGuard
+        AuthGuard,
+        UserService,
+        AlertService
     ],
     bootstrap: [AppComponent]
 })

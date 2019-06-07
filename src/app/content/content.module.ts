@@ -3,9 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ContentComponent } from './content.component';
 import {
     NbActionsModule,
+    NbButtonModule,
     NbCardModule,
+    NbCheckboxModule,
     NbContextMenuModule,
+    NbDatepickerModule,
     NbIconModule,
+    NbInputModule,
     NbLayoutModule,
     NbMenuModule,
     NbSidebarModule,
@@ -18,6 +22,7 @@ import { ContentRoutingModule } from './content-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [ContentComponent, SidebarComponent, NavbarComponent, ProfileComponent, DashboardComponent],
@@ -32,8 +37,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         NbCardModule,
         NbMenuModule,
         NbIconModule,
+        NbCheckboxModule,
+        NbInputModule,
         ContentRoutingModule,
-        NbContextMenuModule
+        NbContextMenuModule,
+        ReactiveFormsModule,
+        NbDatepickerModule,
+        NbButtonModule
     ]
 })
 export class ContentModule {}

@@ -1,11 +1,55 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-lg-6">
         <nb-card>
             <nb-card-header>
-                Profile
+                User information
             </nb-card-header>
             <nb-card-body>
-                hey all
+                <form [formGroup]="profileForm" (ngSubmit)="saveUser()">
+                    <div class="form-group row">
+                        <label for="email" class="col-form-label col-sm-3">Your Email</label>
+                        <div class="col-sm-9">
+                        <input placeholder="Enter email" id="email" class="form-control" name="email" formControlName="email" nbInput>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="firstName" class="col-form-label col-sm-3">First Name</label>
+                        <div class="col-sm-9">
+                        <input placeholder="Your First Name" id="firstName" class="form-control" name="firstName" formControlName="firstName" nbInput>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lastName" class="col-form-label col-sm-3">Last Name</label>
+                        <div class="col-sm-9">
+                        <input placeholder="Your Last Name" id="lastName" class="form-control" name="lastName" formControlName="lastName" nbInput>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="birthDate" class="col-form-label col-sm-3">Birth Date</label>
+                        <div class="col-sm-9">
+                            <input id="birthDate" [nbDatepicker]="datepicker" nbInput class="form-control" formControlName="birthDate">
+                            <nb-datepicker #datepicker></nb-datepicker>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="emailing" class="col-form-label col-sm-3">Authorize receive email</label>
+                        <div class="col-sm-9">
+                        <nb-checkbox id="emailing" formControlName="emailing"></nb-checkbox>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button nbButton type="submit"><nb-icon icon="checkmark-outline"></nb-icon> Save</button>
+                    </div>
+                </form>
+            </nb-card-body>
+        </nb-card>
+    </div>
+    <div class="col-md-12 col-lg-6">
+        <nb-card>
+            <nb-card-header>
+                Company information
+            </nb-card-header>
+            <nb-card-body>
             </nb-card-body>
         </nb-card>
     </div>

@@ -4,11 +4,11 @@
 
 export const environment = {
     production: false,
-    defaultWorkspace: 'main',
-    title: 'my app',
+    title: 'freelance',
     securityUrl: window.location.protocol,
     baseUrl: '://' + window.location.host + '/',
-    canRegister: true // if !hasLogin canRegister will be considered false
+    canRegister: true,
+    apiUrl: window.location.protocol + '//' + window.location.host + '/api'
 };
 
 /*
