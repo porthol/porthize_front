@@ -22,11 +22,12 @@ import { ContentRoutingModule } from './content-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [ContentComponent, SidebarComponent, NavbarComponent, ProfileComponent, DashboardComponent],
     imports: [
+        FormsModule,
         CommonModule,
         NbUserModule,
         RouterModule,
