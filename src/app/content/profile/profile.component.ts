@@ -1,9 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import { UserService } from '../../../services/user.service';
 import { AlertService } from '../../../services/alert.service';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
+import { CompanyService } from '../../../services/company.service';
+import { flatMap } from 'rxjs/operators';
+import { UserCurrentService } from '../../../services/user-current.service';
+import { User } from '../../../models/user';
 
 @Component({
     selector: 'app-profile',
@@ -11,14 +14,16 @@ import { FormControl, FormGroup } from '@angular/forms';
     styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-    private subscribeUser: Subscription;
+    private subscribeProfile: Subscription;
     profileForm: FormGroup;
     companyForm: FormGroup;
-    private user = {} as any;
+    private user: User;
+    private company = {} as any;
 
     constructor(
-        private authService: NbAuthService,
+        private userCurrentService: UserCurrentService,
         private userService: UserService,
+        private companyService: CompanyService,
         private alertService: AlertService
     ) {
         this.profileForm = new FormGroup({
@@ -34,16 +39,28 @@ export class ProfileComponent implements OnInit, OnDestroy {
             numberId: new FormControl(),
             street: new FormControl(),
             street2: new FormControl(),
+            state: new FormControl(),
             city: new FormControl(),
             zip: new FormControl(),
-            country: new FormControl(),
+            country: new FormControl()
         });
-        this.subscribeUser = this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
-            if (token.isValid()) {
-                this.user = token.getPayload().user;
-                this.profileForm.patchValue(this.user);
-            }
-        });
+
+        this.subscribeProfile = this.userCurrentService.getCurrentUser()
+            .pipe(
+                flatMap((user: User) => {
+                    if (user !== this.user) {
+                        this.profileForm.patchValue(user);
+                    }
+                    this.user = user;
+                    console.log('receiving user');
+                    console.log(this.user);
+                    return this.companyService.getCurrent();
+                })
+            ).subscribe((company: any) => {
+                console.log(company);
+                this.company = company;
+                this.companyForm.patchValue(company);
+            });
     }
 
 
@@ -51,19 +68,26 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.subscribeUser.unsubscribe();
+        this.subscribeProfile.unsubscribe();
     }
 
     saveUser() {
         const resultForm = this.profileForm.getRawValue();
         Object.keys(resultForm).forEach((key) => (resultForm[key] == null) && delete resultForm[key]);
         this.userService.updateCurrent(resultForm).toPromise()
-            .then(user => {
-                this.user = user;
-                this.alertService.success('Changes saved !', '');
+            .then((user: User) => {
+                this.userCurrentService.setCurrentUser(user);
+                this.alertService.success('User changes saved !', 'Success');
             });
     }
 
     saveCompany() {
+        const resultForm = this.companyForm.getRawValue();
+        Object.keys(resultForm).forEach((key) => (resultForm[key] == null) && delete resultForm[key]);
+        this.companyService.updateCurrent(resultForm).toPromise()
+            .then(company => {
+                this.company = company;
+                this.alertService.success('Company changes saved !', 'Success');
+            });
     }
 }
