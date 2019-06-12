@@ -38,6 +38,7 @@
                 }
               ],
               "optimization": true,
+              "baseHref": "/en/",
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
@@ -53,6 +54,15 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "fr": {
+              "aot": true,
+              "outputPath": "dist/front-fr/",
+              "i18nFile": "src/locale/messages.fr.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "fr",
+              "baseHref": "/fr/",
+              "i18nMissingTranslation": "warn"
             }
           }
         },
@@ -67,6 +77,9 @@
           "configurations": {
             "production": {
               "browserTarget": "default-angular-app:build:production"
+            },
+            "fr": {
+              "browserTarget": "default-angular-app:build:fr"
             }
           }
         },
