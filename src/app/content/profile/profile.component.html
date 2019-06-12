@@ -1,44 +1,44 @@
 <div class="row">
     <div class="col-md-12 col-lg-6">
         <nb-card>
-            <nb-card-header>
+            <nb-card-header i18n>
                 User information
             </nb-card-header>
             <nb-card-body>
                 <form [formGroup]="profileForm" (ngSubmit)="saveUser()">
                     <div class="form-group row">
-                        <label for="email" class="col-form-label col-sm-3">Your Email</label>
+                        <label for="email" class="col-form-label col-sm-3" i18n>Your Email</label>
                         <div class="col-sm-9">
                         <input placeholder="Enter email" id="email" class="form-control" name="email" formControlName="email" nbInput>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="firstName" class="col-form-label col-sm-3">First Name</label>
+                        <label for="firstName" class="col-form-label col-sm-3" i18n>First Name</label>
                         <div class="col-sm-9">
                         <input placeholder="Your First Name" id="firstName" class="form-control" name="firstName" formControlName="firstName" nbInput>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="lastName" class="col-form-label col-sm-3">Last Name</label>
+                        <label for="lastName" class="col-form-label col-sm-3" i18n>Last Name</label>
                         <div class="col-sm-9">
                         <input placeholder="Your Last Name" id="lastName" class="form-control" name="lastName" formControlName="lastName" nbInput>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="birthDate" class="col-form-label col-sm-3">Birth Date</label>
+                        <label for="birthDate" class="col-form-label col-sm-3" i18n>Birth Date</label>
                         <div class="col-sm-9">
                             <input id="birthDate" [nbDatepicker]="datepicker" placeholder="Give us your birthday" nbInput class="form-control" formControlName="birthDate">
                             <nb-datepicker #datepicker></nb-datepicker>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="emailing" class="col-form-label col-sm-3">Authorize receive email</label>
+                        <label for="emailing" class="col-form-label col-sm-3" i18n>Authorize receive email</label>
                         <div class="col-sm-9">
                         <nb-checkbox id="emailing" formControlName="emailing"></nb-checkbox>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button nbButton type="submit"><nb-icon icon="checkmark-outline"></nb-icon> Save</button>
+                        <button nbButton type="submit" i18n><nb-icon icon="checkmark-outline"></nb-icon> Save</button>
                     </div>
                 </form>
             </nb-card-body>
@@ -46,10 +46,39 @@
     </div>
     <div class="col-md-12 col-lg-6">
         <nb-card>
-            <nb-card-header>
+            <nb-card-header i18n>
                 Company information
             </nb-card-header>
             <nb-card-body>
+                <form [formGroup]="companyForm" (ngSubmit)="saveCompany()">
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-3" i18n>Your Company Name</label>
+                    <div class="col-sm-9">
+                        <input placeholder="Enter email" class="form-control" name="email" formControlName="name" nbInput>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-3" i18n>First Name</label>
+                    <div class="col-sm-9">
+                        <input placeholder="Your First Name" class="form-control" name="firstName" formControlName="numberId" nbInput>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-3" i18n>Last Name</label>
+                    <div class="col-sm-9">
+                        <input placeholder="Your Last Name" class="form-control" name="lastName" formControlName="street" nbInput>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-3" i18n>Birth Date</label>
+                    <div class="col-sm-9">
+                        <input placeholder="Give us your birthday" nbInput class="form-control" formControlName="street2">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button nbButton type="submit" i18n><nb-icon icon="checkmark-outline"></nb-icon> Save</button>
+                </div>
+            </form>
             </nb-card-body>
         </nb-card>
     </div>

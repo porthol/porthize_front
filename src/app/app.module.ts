@@ -22,6 +22,12 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { UserService } from '../services/user.service';
 import { AlertService } from '../services/alert.service';
 
+// import { registerLocaleData } from '@angular/common';
+// import localeFr from '@angular/common/locales/fr';
+//
+// // the second parameter 'fr' is optional
+// registerLocaleData(localeFr, 'fr');
+
 @NgModule({
     declarations: [AppComponent],
     imports: [

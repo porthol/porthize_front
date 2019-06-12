@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
     NbAuthComponent,
-    NbLoginComponent,
     NbLogoutComponent,
     NbRequestPasswordComponent,
     NbResetPasswordComponent
 } from '@nebular/auth';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
     {
@@ -16,7 +16,7 @@ export const routes: Routes = [
         children: [
             {
                 path: 'login',
-                component: NbLoginComponent
+                component: LoginComponent
             },
             {
                 path: 'register',

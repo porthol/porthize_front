@@ -24,8 +24,7 @@ export class SidebarComponent implements OnInit {
         {
             title: 'Dashboard',
             icon: 'home-outline',
-            link: '/content/dashboard',
-            home: true
+            link: '/content/dashboard'
         }
     ];
 

@@ -12,7 +12,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
     private subscribeUser: Subscription;
-    private profileForm: FormGroup;
+    profileForm: FormGroup;
+    companyForm: FormGroup;
     private user = {} as any;
 
     constructor(
@@ -26,6 +27,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
             lastName: new FormControl(),
             birthDate: new FormControl(),
             emailing: new FormControl()
+        });
+
+        this.companyForm = new FormGroup({
+            name: new FormControl(),
+            numberId: new FormControl(),
+            street: new FormControl(),
+            street2: new FormControl(),
+            city: new FormControl(),
+            zip: new FormControl(),
+            country: new FormControl(),
         });
         this.subscribeUser = this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
             if (token.isValid()) {
@@ -51,5 +62,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 this.user = user;
                 this.alertService.success('Changes saved !', '');
             });
+    }
+
+    saveCompany() {
     }
 }

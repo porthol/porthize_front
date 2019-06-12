@@ -5,8 +5,9 @@ import { RouterModule } from '@angular/router';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { NbAuthModule } from '@nebular/auth';
-import { NbAlertModule, NbButtonModule, NbCheckboxModule, NbInputModule } from '@nebular/theme';
+import { NbAlertModule, NbButtonModule, NbCheckboxModule, NbIconModule, NbInputModule } from '@nebular/theme';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
     imports: [
@@ -18,8 +19,9 @@ import { RegisterComponent } from './register/register.component';
         NbButtonModule,
         NbCheckboxModule,
         AuthRoutingModule,
+        NbIconModule,
         NbAuthModule
     ],
-    declarations: [RegisterComponent]
+    declarations: [RegisterComponent, LoginComponent]
 })
 export class AuthModule {}
