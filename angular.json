@@ -23,7 +23,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -36,6 +38,7 @@
                 }
               ],
               "optimization": true,
+              "baseHref": "/en/",
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
@@ -51,17 +54,32 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "fr": {
+              "aot": true,
+              "outputPath": "dist/front-fr/",
+              "i18nFile": "src/locale/messages.fr.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "fr",
+              "baseHref": "/fr/",
+              "i18nMissingTranslation": "warn"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "default-angular-app:build"
+            "browserTarget": "default-angular-app:build",
+            "host": "0.0.0.0",
+            "publicHost": "http://127.0.0.1:8082/",
+            "disableHostCheck": true
           },
           "configurations": {
             "production": {
               "browserTarget": "default-angular-app:build:production"
+            },
+            "fr": {
+              "browserTarget": "default-angular-app:build:fr"
             }
           }
         },
@@ -79,7 +97,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "assets": [
@@ -131,5 +149,5 @@
       }
     }
   },
-  "defaultProject": "default-angular-app"
+  "defaultProject": "front"
 }

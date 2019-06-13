@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col">
+        <nb-icon icon="menu-2" (click)="toggle()" title="Menu" [options]="{width:36, height:36, animation: {type: 'pulse', infinite: true}, fill: 'inherit'}"></nb-icon>
+    </div>
+    <div class="col-lg-1 col-md-2 order-last text-right">
+        <nb-icon icon="bell-outline"
+                 [nbContextMenu]="notifications" title="Menu" [options]="{width:28, height:36, animation: {type: 'pulse', infinite: true}, fill: 'inherit'}"></nb-icon>
+    </div>
+    <div class="col-lg-1 col-md-2 order-last text-right">
+        <nb-user *ngIf="user" [name]="user.username || user.email"
+                 [nbContextMenu]="items"
+                 class="pointer align-self-end"></nb-user>
+    </div>
+</div>
