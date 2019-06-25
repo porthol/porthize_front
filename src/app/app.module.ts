@@ -21,7 +21,6 @@ import { AuthGuard } from '../services/auth-guard.service';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { UserService } from '../services/user.service';
 import { AlertService } from '../services/alert.service';
-import { CompanyService } from '../services/company.service';
 import { UserCurrentService } from '../services/user-current.service';
 
 // import { registerLocaleData } from '@angular/common';
@@ -116,7 +115,6 @@ import { UserCurrentService } from '../services/user-current.service';
         NbSidebarService,
         AuthGuard,
         UserService,
-        CompanyService,
         UserCurrentService,
         AlertService
     ],
