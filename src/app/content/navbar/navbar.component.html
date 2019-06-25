@@ -1,12 +1,35 @@
-<div class="row">
-    <div class="col"></div>
-    <div class="col-lg-1 col-md-2 order-last text-right">
+<div class="navbar navbar-expand-lg">
+    <a class="navbar-brand">Porthize</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars menu"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button nbButton ghost>
+                        <nb-icon icon="search-outline"
+                                 [options]="{animation: {type: 'pulse', infinite: true}, fill: '#fff'}"></nb-icon>
+                    </button>
+                </form>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" routerLink="dashboard">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+
+        <span class="navbar-text">
         <nb-icon icon="bell-outline"
-                 [nbContextMenu]="notifications" title="Menu" [options]="{width:28, height:36, animation: {type: 'pulse', infinite: true}, fill: 'inherit'}"></nb-icon>
-    </div>
-    <div class="col-lg-1 col-md-2 order-last text-right">
+                 [nbContextMenu]="notifications" title="Menu"
+                 [options]="{width:28, height:36, animation: {type: 'pulse', infinite: true}, fill: '#fff'}"></nb-icon>
+        </span>
+        <span class="navbar-text">
         <nb-user *ngIf="user" [name]="user.username || user.email"
                  [nbContextMenu]="items"
                  class="pointer align-self-end"></nb-user>
+  </span>
     </div>
 </div>

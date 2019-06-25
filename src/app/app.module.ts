@@ -37,7 +37,7 @@ import { UserCurrentService } from '../services/user-current.service';
         HttpClientModule,
         AppRoutingModule,
         NbDatepickerModule.forRoot(),
-        NbThemeModule.forRoot({ name: 'dark' }),
+        NbThemeModule.forRoot({ name: 'cosmic' }),
         NbAuthModule.forRoot({
             strategies: [
                 NbPasswordAuthStrategy.setup({
