@@ -29,17 +29,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
             emailing: new FormControl()
         });
 
-        this.subscribeProfile = this.userCurrentService.getCurrentUser()
-            .subscribe((user: User) => {
-                if (user !== this.user) {
-                    this.profileForm.patchValue(user);
-                }
-                this.user = user;
-            });
+        this.subscribeProfile = this.userCurrentService.getCurrentUser().subscribe((user: User) => {
+            if (user !== this.user) {
+                this.profileForm.patchValue(user);
+            }
+            this.user = user;
+        });
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     ngOnDestroy(): void {
         this.subscribeProfile.unsubscribe();
@@ -47,9 +45,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     saveUser() {
         const resultForm = this.profileForm.getRawValue();
-        Object.keys(resultForm).forEach((key) => (resultForm[key] == null) && delete resultForm[key]);
-        this.userService.updateCurrent(resultForm).toPromise()
-            .then((user: User) => {
+        Object.keys(resultForm).forEach(key => resultForm[key] == null && delete resultForm[key]);
+        this.userService
+            .updateCurrent(resultForm)
+            .subscribe((user: User) => {
                 this.userCurrentService.setCurrentUser(user);
                 this.alertService.success('User changes saved !', 'Success');
             });

@@ -6,22 +6,16 @@ import { UserService } from './user.service';
 
 @Injectable()
 export class UserCurrentService {
-
     private currentUser: User;
     private userEvent = new Subject<User>();
     private _userEvent = this.userEvent.asObservable();
 
-    constructor(
-        private authService: NbAuthService,
-        private userService: UserService
-    ) {
-        this.authService.onTokenChange()
-            .subscribe((token: NbAuthJWTToken) => {
-                if (token.isValid()) {
-                    this.setCurrentUser(token.getPayload().user);
-                }
-            });
-
+    constructor(private authService: NbAuthService, private userService: UserService) {
+        this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
+            if (token.isValid()) {
+                this.setCurrentUser(token.getPayload().user);
+            }
+        });
     }
 
     getCurrentUser(forceReload = false): Observable<User> {

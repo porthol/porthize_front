@@ -42,8 +42,7 @@ export class NavbarComponent implements OnInit {
         }
     ];
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     toggle() {
         this.sidebarService.toggle(true);
