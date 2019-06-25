@@ -12,10 +12,8 @@ import {
     NbInputModule,
     NbLayoutModule,
     NbMenuModule,
-    NbSidebarModule,
     NbUserModule
 } from '@nebular/theme';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { NbAuthModule } from '@nebular/auth';
 import { ContentRoutingModule } from './content-routing.module';
@@ -25,13 +23,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-    declarations: [ContentComponent, SidebarComponent, NavbarComponent, ProfileComponent, DashboardComponent],
+    declarations: [ContentComponent, NavbarComponent, ProfileComponent, DashboardComponent],
     imports: [
         FormsModule,
         CommonModule,
         NbUserModule,
         RouterModule,
-        NbSidebarModule,
         NbLayoutModule,
         NbAuthModule,
         NbActionsModule,

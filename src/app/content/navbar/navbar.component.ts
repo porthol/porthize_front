@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
-import { NbSidebarService } from '@nebular/theme';
 
 @Component({
     selector: 'app-navbar',
@@ -8,7 +7,7 @@ import { NbSidebarService } from '@nebular/theme';
     styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-    constructor(private authService: NbAuthService, private sidebarService: NbSidebarService) {
+    constructor(private authService: NbAuthService) {
         this.authService.onTokenChange().subscribe((token: NbAuthJWTToken) => {
             if (token.isValid()) {
                 this.user = token.getPayload().user;
@@ -43,8 +42,4 @@ export class NavbarComponent implements OnInit {
     ];
 
     ngOnInit() {}
-
-    toggle() {
-        this.sidebarService.toggle(true);
-    }
 }
