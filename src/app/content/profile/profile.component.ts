@@ -46,11 +46,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     saveUser() {
         const resultForm = this.profileForm.getRawValue();
         Object.keys(resultForm).forEach(key => resultForm[key] == null && delete resultForm[key]);
-        this.userService
-            .updateCurrent(resultForm)
-            .subscribe((user: User) => {
-                this.userCurrentService.setCurrentUser(user);
-                this.alertService.success('User changes saved !', 'Success');
-            });
+        this.userService.updateCurrent(resultForm).subscribe((user: User) => {
+            this.userCurrentService.setCurrentUser(user);
+            this.alertService.success('User changes saved !', 'Success');
+        });
     }
 }
