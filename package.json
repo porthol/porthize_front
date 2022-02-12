@@ -29,7 +29,7 @@
     "@nebular/eva-icons": "^4.0.0",
     "@nebular/security": "^4.0.0",
     "@nebular/theme": "^4.0.0",
-    "ajv": "^6.10.0",
+    "ajv": "^6.12.3",
     "bootstrap": "^4.3.1",
     "core-js": "^2.6.9",
     "eva-icons": "^1.1.1",
